@@ -9,8 +9,14 @@
 
 {% block content %}
 
+    <p>
+        <a href="{% url 'posts:create' %}">
+            Dodaj nowy post
+        </a>
+    </p>
+
     {% for post in posts %}
-        <a href="/post/{{ post.id }}">
+        <a href="{% url 'posts:details' post.pk %}">
             <h2>{{ post }}</h2>
         </a>
         {{ post.text }}<br>

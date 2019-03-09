@@ -1,29 +1,32 @@
-<style>
-    .good {
-        background-color: lightgreen;
-    }
-    .bad {
-        background-color: red;
-    }
-    h1 {
-        color: blue;
-    }
-</style>
+{% extends 'base.html' %}
 
-<h1>{{ post }}</h1>
+{% block content %}
+    <h1>{{ post }}</h1>
 
-<p class="
-    {% if post.votes >= 0 %}
-        good
-    {% else %}
-        bad
+    <p class="
+        {% if post.votes >= 0 %}
+            good
+        {% else %}
+            bad
+        {% endif %}
+    ">
+        {{ post.votes }}
+    <p>
+
+    <p>{{ post.text }}</p>
+
+    <em>{{ post.created }}</em>
+
+    {% if prev_post_id %}
+        <p>
+            <a href="{% url 'posts:details' prev_post_id %}">poprzedni</a>
+        </p>
     {% endif %}
-">
-    {{ post.votes }}
-<p>
+    {% if next_post_id %}
+        <p>
+            <a href="{% url 'posts:details' next_post_id %}">następny</a>
+        </p>
+    {% endif %}
 
-<p>{{ post.text }}</p>
-
-<em>{{ post.created }}</em>
-
-<a href="/lista">powrót</a>
+    <a href="{% url 'posts:list' %}">powrót</a>
+{% endblock %}
