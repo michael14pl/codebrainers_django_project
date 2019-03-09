@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<style>
+    h1 {
+        color: blue;
+    }
+</style>
+
+
+{% block content %}
+
+    {% for post in posts %}
+        <a href="/post/{{ post.id }}">
+            <h2>{{ post }}</h2>
+        </a>
+        {{ post.text }}<br>
+        {{ post.votes }}<br>
+        {{ post.created }}<br>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

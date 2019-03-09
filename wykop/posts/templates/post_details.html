@@ -1,0 +1,29 @@
+<style>
+    .good {
+        background-color: lightgreen;
+    }
+    .bad {
+        background-color: red;
+    }
+    h1 {
+        color: blue;
+    }
+</style>
+
+<h1>{{ post }}</h1>
+
+<p class="
+    {% if post.votes >= 0 %}
+        good
+    {% else %}
+        bad
+    {% endif %}
+">
+    {{ post.votes }}
+<p>
+
+<p>{{ post.text }}</p>
+
+<em>{{ post.created }}</em>
+
+<a href="/lista">powrót</a>
