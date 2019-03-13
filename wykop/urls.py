@@ -21,5 +21,6 @@ from wykop.posts.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view()),
+    path('', include('wykop.accounts.urls')),
     path('posts/', include('wykop.posts.urls')),
 ]
