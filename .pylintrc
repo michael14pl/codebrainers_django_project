@@ -1,2 +1,2 @@
 [WYKOP]
-disable=missing-docstring,invalid-name
+disable=missing-docstring,invalid-name,too-many-ancestors

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from wykop.posts.models import Post
@@ -16,7 +15,6 @@ class PostListView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        # qs = Post.objects.all().order_by('-votes')
         qs = qs.filter(votes__gte=0)
         return qs
 
