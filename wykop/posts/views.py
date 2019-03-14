@@ -1,3 +1,8 @@
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from wykop.posts.models import Post
@@ -57,3 +62,13 @@ class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'text']
     template_name = 'post_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        # if not request.user.is_authenticated:
+        #     return HttpResponseRedirect(reverse(settings.LOGIN_URL))
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
