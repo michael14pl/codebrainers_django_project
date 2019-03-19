@@ -2,8 +2,9 @@ from datetime import timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import (CreateView, DetailView, ListView,
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   TemplateView, UpdateView, View)
 
 from wykop.posts.models import Post, Vote
@@ -63,6 +64,18 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
         qs = qs.filter(created__gt=half_hour_ago)
 
+        return qs
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy('posts:list')
+    context_object_name = 'post'
+    template_name = 'post_delete.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.filter(author=self.request.user)
         return qs
 
 

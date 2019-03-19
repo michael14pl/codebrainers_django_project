@@ -1,7 +1,7 @@
 from django.urls import path
 
-from wykop.posts.views import (PostCreateView, PostDetailView, PostListView,
-                               PostUpdateView, VoteView)
+from wykop.posts.views import (PostCreateView, PostDeleteView, PostDetailView,
+                               PostListView, PostUpdateView, VoteView)
 
 app_name = 'posts'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('nowy', PostCreateView.as_view(), name='create'),
     path('glosuj/<int:post_pk>', VoteView.as_view(), name='vote'),
     path('edycja/<int:pk>', PostUpdateView.as_view(), name='edit'),
+    path('usun/<int:pk>', PostDeleteView.as_view(), name='delete'),
 ]

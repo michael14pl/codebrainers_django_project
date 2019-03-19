@@ -34,4 +34,4 @@ class Vote(models.Model):
 
     value = models.SmallIntegerField(choices=VALUE_CHOICES)
     user = models.ForeignKey("accounts.User", on_delete=deletion.PROTECT, related_name='votes')
-    post = models.ForeignKey(Post, on_delete=deletion.PROTECT, related_name='votes')
+    post = models.ForeignKey(Post, on_delete=deletion.CASCADE, related_name='votes')
