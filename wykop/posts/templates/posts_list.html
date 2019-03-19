@@ -19,8 +19,10 @@
         <a href="{% url 'posts:details' post.pk %}">
             <h2>{{ post }}</h2>
         </a>
+        {% include 'post_vote_form.html' %}
+
         {{ post.text }}<br>
-        {{ post.votes }}<br>
+        {{ post.score }}<br>
         {{ post.created }}<br>
         {{ post.author }}<br>
         <hr>

@@ -4,28 +4,34 @@
     <h1>{{ post }}</h1>
 
     <p class="
-        {% if post.votes >= 0 %}
+        {% if post.score >= 0 %}
             good
         {% else %}
             bad
         {% endif %}
     ">
-        {{ post.votes }}
+        {{ post.score }}
     <p>
+
+    {% include 'post_vote_form.html' %}
 
     <p>{{ post.text }}</p>
 
     <em>{{ post.created }}</em>
 
-    {% if prev_post_id %}
+    {% if prev_post %}
         <p>
-            <a href="{% url 'posts:details' prev_post_id %}">poprzedni</a>
+            <a href="{% url 'posts:details' prev_post.pk %}">poprzedni</a>
         </p>
     {% endif %}
-    {% if next_post_id %}
+    {% if next_post %}
         <p>
-            <a href="{% url 'posts:details' next_post_id %}">następny</a>
+            <a href="{% url 'posts:details' next_post.pk %}">następny</a>
         </p>
+    {% endif %}
+
+    {% if user == post.author %}
+        <a href="{% url 'posts:edit' post.pk %}">Edytuj</a>
     {% endif %}
 
     <a href="{% url 'posts:list' %}">powrót</a>
