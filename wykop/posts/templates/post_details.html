@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load embed_video_tags %}
 
 {% block content %}
     <h1>{{ post }}</h1>
@@ -16,6 +17,15 @@
     {% include 'post_vote_form.html' %}
 
     <p>{{ post.text }}</p>
+
+    {% if post.image %}
+        <div>
+            <img class="post_image" src="{{ post.image.url }}">
+        </div>
+    {% endif %}
+    {% if post.video %}
+        {% video post.video '800x600' %}
+    {% endif %}
 
     <em>{{ post.created }}</em>
 

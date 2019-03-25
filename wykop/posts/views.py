@@ -42,7 +42,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'text']
+    fields = ['title', 'text', 'image', 'video']
     template_name = 'post_create.html'
 
     def form_valid(self, form):
@@ -52,7 +52,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'text']
+    fields = ['title', 'text', 'image', 'video']
     template_name = 'post_create.html'
 
     def get_queryset(self):

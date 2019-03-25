@@ -11,3 +11,8 @@ h1 {
 .profile {
   float: right;
 }
+
+.post_image {
+  max-height: 200px;
+  max-width: 200px;
+}

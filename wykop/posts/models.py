@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import deletion
 from django.db.models.aggregates import Sum
 from django.urls import reverse
+from embed_video.fields import EmbedVideoField
 
 
 class Post(models.Model):
@@ -9,6 +10,8 @@ class Post(models.Model):
     title = models.CharField(max_length=128, blank=False, default='')
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey("accounts.User", deletion.PROTECT, related_name='posts')
+    image = models.ImageField(upload_to='posts_images/', null=True, blank=True)
+    video = EmbedVideoField(null=True, blank=True)
 
     def __str__(self):
         return self.title
