@@ -4,6 +4,7 @@ from wykop.posts.models import Vote
 
 register = template.Library()
 
+
 @register.simple_tag(takes_context=True)
 def user_vote_for_post(context):
     user = context['user']

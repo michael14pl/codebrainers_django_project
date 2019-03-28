@@ -1,8 +1,8 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from wykop.accounts.views import (RegisterView, UserDetailView, UserListView,
-                                  UserLoginView, UserUpdateView)
+from wykop.accounts.views import (ConfirmTosView, RegisterView, UserDetailView,
+                                  UserListView, UserLoginView, UserUpdateView)
 
 app_name = 'accounts'
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('uzytkownicy', UserListView.as_view(), name='list'),
     path('profil/<int:pk>', UserDetailView.as_view(), name='profile'),
     path('edycja_profilu', UserUpdateView.as_view(), name='update'),
+    path('regulamin', ConfirmTosView.as_view(), name='confirm_tos'),
 ]

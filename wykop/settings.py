@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wykop.accounts.middlewares.TosAccepted',
 ]
 
 ROOT_URLCONF = 'wykop.urls'
@@ -137,3 +138,5 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = 'posts:list'
 LOGOUT_REDIRECT_URL = 'posts:list'
 LOGIN_URL = 'accounts:login'
+
+CURRENT_TOS_VERSION = 3
