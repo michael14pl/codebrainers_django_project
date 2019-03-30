@@ -4,9 +4,11 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, FormView, ListView, UpdateView
+from rest_framework import viewsets
 
 from wykop.accounts.forms import ConfirmTosForm, RegisterForm
 from wykop.accounts.models import User
+from wykop.accounts.serializers import UserSerializer
 from wykop.settings import CURRENT_TOS_VERSION
 
 
@@ -80,3 +82,8 @@ class ConfirmTosView(LoginRequiredMixin, FormView):
         if next:
             return next
         return reverse('posts:list')
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

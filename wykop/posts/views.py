@@ -1,14 +1,17 @@
 from datetime import timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   TemplateView, UpdateView, View)
-from django.db.models import Q
+from rest_framework import viewsets
 
 from wykop.posts.models import Post, Vote
+from wykop.posts.permissions import PostPermission
+from wykop.posts.serializers import PostSerializer
 
 
 class HomeView(TemplateView):
@@ -111,3 +114,12 @@ class VoteView(LoginRequiredMixin, View):
         )
 
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [PostPermission]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)

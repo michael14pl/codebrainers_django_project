@@ -17,14 +17,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.authtoken.views import obtain_auth_token
 
+from wykop.api.urls import router
 from wykop.posts.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls), name='api'),
     path('', HomeView.as_view()),
     path('', include('wykop.accounts.urls')),
     path('posts/', include('wykop.posts.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', obtain_auth_token),
 ]
 
 if settings.DEBUG:
