@@ -12,6 +12,7 @@ class Post(models.Model):
     author = models.ForeignKey("accounts.User", deletion.PROTECT, related_name='posts')
     image = models.ImageField(upload_to='posts_images/', null=True, blank=True)
     video = EmbedVideoField(null=True, blank=True)
+    nsfw = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

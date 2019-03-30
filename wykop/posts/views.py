@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   TemplateView, UpdateView, View)
+from django.db.models import Q
 
 from wykop.posts.models import Post, Vote
 
@@ -19,6 +20,21 @@ class PostListView(ListView):
     template_name = 'posts_list.html'
     context_object_name = 'posts'
     ordering = '-created'
+    paginate_by = 4
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['search_value'] = self.request.GET.get('search')
+        return ctx
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+
+        query = self.request.GET.get('search')
+        if query:
+            qs = qs.filter(Q(title__icontains=query) | Q(text__icontains=query))
+
+        return qs
 
 
 class PostDetailView(DetailView):
@@ -42,7 +58,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'text', 'image', 'video']
+    fields = ['title', 'text', 'image', 'video', 'nsfw']
     template_name = 'post_create.html'
 
     def form_valid(self, form):
@@ -52,7 +68,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'text', 'image', 'video']
+    fields = ['title', 'text', 'image', 'video', 'nsfw']
     template_name = 'post_create.html'
 
     def get_queryset(self):

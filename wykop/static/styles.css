@@ -16,3 +16,7 @@ h1 {
   max-height: 200px;
   max-width: 200px;
 }
+
+.nsfw-content {
+  display: none;
+}
