@@ -1,1 +1,1 @@
-web: gunicorn wykop:runserver
+web: gunicorn wykop.wsgi
