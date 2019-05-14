@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from wykop.posts.models import Post, Vote, User
+from wykop.posts.models import Post, Vote
+from wykop.accounts.models import User
 
 # Create your tests here.
 
