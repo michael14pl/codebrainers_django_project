@@ -12,7 +12,7 @@ class BarTest(TestCase):
 	def test_votes(self):
 		user1 = User.objects.create(username="Alice")
 		user2 = User.objects.create(username="Bob")
-		post = Post.objects.create()
+		post = Post.objects.create(author=user1)
 		vote1 = Vote.objects.create(user=user1, post=post, value=1)
 		vote2 = Vote.objects.create(user=user2, post=post, value=1)
 		
