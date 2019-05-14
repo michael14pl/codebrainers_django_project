@@ -16,4 +16,4 @@ class BarTest(TestCase):
 		vote1 = Vote.objects.create(user=user1, post=post, value=1)
 		vote2 = Vote.objects.create(user=user2, post=post, value=1)
 		
-		self.assertEquals(Post.objects.get(id=1).score(), 2)
+		self.assertEquals(Post.objects.get(id=1).score, 2)
