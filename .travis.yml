@@ -2,8 +2,6 @@ dist: xenial
 language: python
 python:
  - "3.6"
-services:
- - mysql
 env:
  -DJANGO=2.2.1
 install:
