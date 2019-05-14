@@ -1,1 +1,1 @@
-web: gunicorn wykop:app
+web: gunicorn wykop:runserver
