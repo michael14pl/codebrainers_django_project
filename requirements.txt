@@ -2,5 +2,6 @@ django
 django-extensions
 django-embed-video
 djangorestframework
+Pillow
 django-heroku
 gunicorn
