@@ -10,8 +10,8 @@ class BarTest(TestCase):
 		self.assertFalse(False)
 
 	def test_votes(self):
-		user1 = User.objects.create()
-		user2 = User.objects.create()
+		user1 = User.objects.create(username="Alice")
+		user2 = User.objects.create(username="Bob")
 		post = Post.objects.create()
 		vote1 = Vote.objects.create(user=user1, post=post, value=1)
 		vote2 = Vote.objects.create(user=user2, post=post, value=1)
