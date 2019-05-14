@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from catalog.models import Post, Vote, User
+from wykop.models import Post, Vote, User
 
 # Create your tests here.
 
